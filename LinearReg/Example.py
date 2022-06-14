@@ -5,7 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt 
 import seaborn as sns 
 
-df = pd.read_csv('LinearReg/USA_Housing.csv')  
+df = pd.read_csv('USA_Housing.csv')  
 df.columns
 X = df[['Avg. Area Income', 'Avg. Area House Age', 'Avg. Area Number of Rooms',
        'Avg. Area Number of Bedrooms', 'Area Population']] 
