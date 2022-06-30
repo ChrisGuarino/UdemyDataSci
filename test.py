@@ -21,6 +21,12 @@ X_test /= 255
 print("Training Matrix Shape: ", X_train.shape)
 print("Testing Matrix Shape: ", X_test.shape)
 
+#One-Hot Encoding Technique 
+no_classes =10 
+Y_train = np_utils.to_categorical(y_train, no_classes)
+Y_test = np_utils.to_categorical(y_test, no_classes)
+
+
 #Building a 3-Layer Neural Network 
 model = Sequential() 
 
@@ -41,3 +47,19 @@ model.add(Activation('softmax'))
 #Summery 
 model.summary() 
 
+#Compile and Specify Loss Function 
+model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+
+#Train the Model 
+model.fit(X_train,Y_train,batch_size=128,epochs=5,verbose=1)
+
+#Compare Trained Model to the Testing Dataset 
+score = model.evaluate(X_test, Y_test)
+print('Test Score: ', score[0])
+print('Test Accuracy: ', score[1]) 
+
+
+image = X_train[1] 
+fig = plt.figure 
+plt.imshow(image, cmap='gray')
+plt.show()
